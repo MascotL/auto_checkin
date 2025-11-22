@@ -1,5 +1,6 @@
 import os
 import re
+import sys
 import requests
 from urllib.parse import urlencode
 
@@ -114,13 +115,14 @@ with requests.Session() as s:
 
         if checkin == 1:
             send_push(s, "69云 - 签到成功", f"获得流量: {gained}  剩余流量: {left}", level="passive")
-            raise SystemExit(f"[INFO] success: Check-in successful. Data received: {gained}, remaining data: {left}.")
+            print(f"[INFO] success: Check-in successful. Data received: {gained}, remaining data: {left}.")
+            sys.exit(0)
         elif checkin == 0:
-            raise SystemExit("[WARRING] checkin fail: You have already checked in.")
+            raise SystemExit("[WARNING] checkin fail: You have already checked in.")
         else:
             reason = data.get("msg", "未知原因")
             send_push(s, "69云 - 签到失败", reason, level="passive")
-        raise SystemExit(f"[ERROR] checkin fail: Login successful, but check-in failed. Reason: {reason}")
+            raise SystemExit(f"[ERROR] checkin fail: Login successful, but check-in failed. Reason: {reason}")
     except Exception as exc:
         send_push(s, "69云 - 签到失败", str(exc), level="passive")
         raise SystemExit(f"[ERROR] checkin fail: Login successful, but check-in failed. Exception: {exc}")
