@@ -9,7 +9,7 @@ from urllib.parse import urlencode
 # Environment-driven config; provide defaults only where safe.
 LOGIN_URL = "https://69yun69.com/auth/login"
 CHECKIN_URL = "https://69yun69.com/user/checkin"
-PUSH_URL = os.getenv("PUSH_URL", "https://api.day.app/6E6UMtqjTU4HR4DVNXcXEC/")
+PUSH_URL = os.getenv("PUSH_URL", "")
 BARK_LEVEL = os.getenv("BARK_LEVEL", "passive")
 LOGIN_EMAIL = os.getenv("LOGIN_EMAIL", "").strip()
 LOGIN_PASS = os.getenv("LOGIN_PASS", "").strip()
